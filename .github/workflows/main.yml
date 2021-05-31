@@ -41,6 +41,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
+        args: >
+          - Dsonar.coverage.exclusions=**/Migrations/**
+          - Dsonar.coverage.exclusions=**/LibraryContext.cs
+          - Dsonar.coverage.exclusions=**/LibraryContextFactory.cs
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"cbmlody_home-library-app" /o:"cbmlody" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build .\HomeLibraryAPI\
