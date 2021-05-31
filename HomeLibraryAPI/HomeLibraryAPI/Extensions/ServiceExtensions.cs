@@ -1,14 +1,22 @@
 ﻿using Contracts;
 
+using Entities;
+
 using LoggerService;
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeLibraryAPI.Extensions
 {
     public static class ServiceExtensions
     {
+        public static void ConfigureMsSqlContext(this IServiceCollection services, IConfiguration config)
+        {
+            services.AddDbContext<LibraryContext>();
+        }
+
         public static void ConfigureCors(this IServiceCollection services)
         {
             services.AddCors(options =>

@@ -28,6 +28,7 @@ namespace HomeLibraryAPI
             services.ConfigureCors();
             services.ConfigureIISIntegration();
             services.ConfigureLoggerService();
+            services.ConfigureMsSqlContext();
             services.AddControllers();
         }
 
