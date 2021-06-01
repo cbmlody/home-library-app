@@ -7,7 +7,7 @@ namespace Entities.Models
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
-        public uint ISBN { get; set; }
+        public string ISBN { get; set; }
 
         public ICollection<Author> Authors { get; set; }
     }
