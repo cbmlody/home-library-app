@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.Configurations;
+using Entities.Models;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -13,5 +14,11 @@ namespace Entities
 
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new AuthorConfiguration());
+            modelBuilder.ApplyConfiguration(new BookConfiguration());
+        }
     }
 }

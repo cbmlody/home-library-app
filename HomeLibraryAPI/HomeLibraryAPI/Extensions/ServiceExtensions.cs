@@ -5,14 +5,13 @@ using Entities;
 using LoggerService;
 
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeLibraryAPI.Extensions
 {
     public static class ServiceExtensions
     {
-        public static void ConfigureMsSqlContext(this IServiceCollection services, IConfiguration config)
+        public static void ConfigureMsSqlContext(this IServiceCollection services)
         {
             services.AddDbContext<LibraryContext>();
         }

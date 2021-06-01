@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Entities.Models
 {
@@ -8,5 +9,7 @@ namespace Entities.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
+
+        public ICollection<Book> Books { get; set; }
     }
 }
