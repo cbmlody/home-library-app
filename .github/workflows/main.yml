@@ -50,7 +50,7 @@ jobs:
       - name: Test project
         shell: powershell
         run: |
-          dotnet test --no-build --no-restore -p:CollectCoverage=true -p:CoverleltOutputFormat=opencover
+          dotnet test --no-build --no-restore -p:CollectCoverage=true -p:CoverleltOutputFormat=opencover .\HomeLibraryAPI\
       - name: End Sonar scan
         shell: powershell
         run: |    
