@@ -29,6 +29,7 @@ namespace HomeLibraryAPI
             services.ConfigureIISIntegration();
             services.ConfigureLoggerService();
             services.ConfigureMsSqlContext();
+            services.ConfigureRepositoryWrapper();
             services.AddControllers();
         }
 

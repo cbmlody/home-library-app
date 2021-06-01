@@ -12,8 +12,8 @@ namespace Entities
         {
         }
 
-        public DbSet<Author> Authors { get; set; }
-        public DbSet<Book> Books { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
+        public virtual DbSet<Book> Books { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
