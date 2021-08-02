@@ -15,16 +15,12 @@ if (Test-Path $testOutputDir)
     Remove-Item $testOutputDir -Recurse -Force
 }
 
-$version = Invoke-Gitversion
-$assemblyVer = $version.assemblyVersion
-
 $branch = git branch --show-current
 Write-Host "branch is $branch"
 
 dotnet tool restore
 dotnet tool run dotnet-sonarscanner begin `
   /k:"cbmlody_home-library-app" `            # Key of the project
-  /v:"$assemblyVer" `                        # Version of the assemly as calculated by gitversion
   /o:"cbmlody" `                             # account
   /d:sonar.login="$sonarSecret" `            # Secret
   /d:sonar.host.url="https://sonarcloud.io" `
