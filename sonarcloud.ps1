@@ -38,9 +38,7 @@ dotnet build HomeLibraryAPI.sln --configuration Release
 
 # Now execute tests with special attention to produce output
 # that can be easily read by SonarCloud analyzer
-dotnet test ".\HomeLibraryAPI\HomeLibraryAPI.sln" `
-  --collect:"XPlat Code Coverage" `           # cross platform code coverage
-  --results-directory TestResults/ `          # Test Result directory
+dotnet test ".\HomeLibraryAPI\HomeLibraryAPI.sln" --collect:"XPlat Code Coverage" -r .\TestResults `
   --logger "trx;LogFileName=unittests.trx" `  # Use standard trx format for logger output
   --no-build `
   --no-restore `
