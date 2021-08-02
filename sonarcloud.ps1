@@ -15,8 +15,7 @@ if (Test-Path $testOutputDir)
     Remove-Item $testOutputDir -Recurse -Force
 }
 
-dotnet tool restore --tool-manifest .\HomeLibraryAPI\.config\dotnet-tools.json
-dotnet tool run dotnet-sonarscanner begin `
+.\.sonar\scanner\dotnet-sonarscanner begin `
   /k:"cbmlody_home-library-app" `            # Key of the project
   /o:"cbmlody" `                             # account
   /d:sonar.login="$sonarSecret" `            # Secret
@@ -24,7 +23,6 @@ dotnet tool run dotnet-sonarscanner begin `
   /d:sonar.cs.vstest.reportsPaths=TestResults/*.trx ` # Path where I'm expecting to find test result in trx format
   /d:sonar.cs.opencover.reportsPaths=TestResults/*/coverage.opencover.xml ` # Name of the code coverage file
   /d:sonar.coverage.exclusions="**Test*.cs" `   # asembly names to be excluded from code coverage
-  /d:sonar.branch.name="$branch"                # Actual branch I'm analyzing.
 
 dotnet restore .\HomeLibraryAPI\HomeLibraryAPI.sln
 dotnet build .\HomeLibraryAPI\HomeLibraryAPI.sln --configuration Release
