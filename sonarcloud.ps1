@@ -15,9 +15,6 @@ if (Test-Path $testOutputDir)
     Remove-Item $testOutputDir -Recurse -Force
 }
 
-$branch = git branch --show-current
-Write-Host "branch is $branch"
-
 dotnet tool restore
 dotnet tool run dotnet-sonarscanner begin `
   /k:"cbmlody_home-library-app" `            # Key of the project
