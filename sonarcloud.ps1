@@ -15,7 +15,7 @@ if (Test-Path $testOutputDir)
     Remove-Item $testOutputDir -Recurse -Force
 }
 
-dotnet tool restore
+dotnet tool restore --tool-manifest .\HomeLibraryAPI\.config\dotnet-tools.json
 dotnet tool run dotnet-sonarscanner begin `
   /k:"cbmlody_home-library-app" `            # Key of the project
   /o:"cbmlody" `                             # account
@@ -26,8 +26,8 @@ dotnet tool run dotnet-sonarscanner begin `
   /d:sonar.coverage.exclusions="**Test*.cs" `   # asembly names to be excluded from code coverage
   /d:sonar.branch.name="$branch"                # Actual branch I'm analyzing.
 
-dotnet restore HomeLibraryAPI.sln
-dotnet build HomeLibraryAPI.sln --configuration Release
+dotnet restore .\HomeLibraryAPI\HomeLibraryAPI.sln
+dotnet build .\HomeLibraryAPI\HomeLibraryAPI.sln --configuration Release
 
 # Now execute tests with special attention to produce output
 # that can be easily read by SonarCloud analyzer
