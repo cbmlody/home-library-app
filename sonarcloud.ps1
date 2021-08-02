@@ -15,20 +15,14 @@ if (Test-Path $testOutputDir)
     Remove-Item $testOutputDir -Recurse -Force
 }
 
-.\.sonar\scanner\dotnet-sonarscanner begin `
-  /k:"cbmlody_home-library-app" `            # Key of the project
-  /o:"cbmlody" `                             # account
-  /d:sonar.login="$sonarSecret" `            # Secret
-  /d:sonar.host.url="https://sonarcloud.io" `
-  /d:sonar.cs.vstest.reportsPaths=TestResults/*.trx ` # Path where I'm expecting to find test result in trx format
-  /d:sonar.cs.opencover.reportsPaths=TestResults/*/coverage.opencover.xml ` # Name of the code coverage file
-  /d:sonar.coverage.exclusions="**Test*.cs" `   # asembly names to be excluded from code coverage
+.\.sonar\scanner\dotnet-sonarscanner begin /k:"cbmlody_home-library-app" /o:"cbmlody" /d:sonar.login="$sonarSecret" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vstest.reportsPaths=TestResults/*.trx /d:sonar.cs.opencover.reportsPaths=TestResults/*/coverage.opencover.xml /d:sonar.coverage.exclusions="**Test*.cs" dotnet restore .\HomeLibraryAPI\HomeLibraryAPI.sln
 
-dotnet restore .\HomeLibraryAPI\HomeLibraryAPI.sln
+Write-Host "Starting build..."
 dotnet build .\HomeLibraryAPI\HomeLibraryAPI.sln --configuration Release
+Write-Host "Finished build."
 
-# Now execute tests with special attention to produce output
-# that can be easily read by SonarCloud analyzer
+Write-Host "Starting tests..."
 dotnet test ".\HomeLibraryAPI\HomeLibraryAPI.sln" --collect:"XPlat Code Coverage" -r .\TestResults --logger "trx;LogFileName=unittests.trx" --no-build --no-restore --configuration Release -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+Write-Host "Finished tests."
 
 dotnet tool run dotnet-sonarscanner end /d:sonar.login="$sonarSecret"
