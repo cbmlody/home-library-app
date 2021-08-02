@@ -19,10 +19,8 @@ if (Test-Path $testOutputDir)
 
 Write-Host "Starting build..."
 dotnet build .\HomeLibraryAPI\HomeLibraryAPI.sln --configuration Release
-Write-Host "Finished build."
 
 Write-Host "Starting tests..."
 dotnet test ".\HomeLibraryAPI\HomeLibraryAPI.sln" --collect:"XPlat Code Coverage" -r .\TestResults --logger "trx;LogFileName=unittests.trx" --no-build --no-restore --configuration Release -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-Write-Host "Finished tests."
 
-dotnet tool run dotnet-sonarscanner end /d:sonar.login="$sonarSecret"
+.\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="$sonarSecret"
