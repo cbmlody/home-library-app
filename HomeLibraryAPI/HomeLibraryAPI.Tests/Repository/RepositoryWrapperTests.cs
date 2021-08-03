@@ -56,7 +56,7 @@ namespace Repository.Tests
             context.Verify(x => x.SaveChanges());
         }
 
-        private Mock<LibraryContext> GetLibraryContextMock()
+        private static Mock<LibraryContext> GetLibraryContextMock()
         {
             var dbContextOptionsBuidler = new DbContextOptionsBuilder<LibraryContext>()
                 .UseInMemoryDatabase("libraryTest");

@@ -131,7 +131,7 @@ namespace Repository.Tests
             dbSetMock.Verify(x => x.Update(It.Is<Book>(y => y == testBook)));
         }
 
-        private IBookRepository GetInMemoryBookRepository(List<Book> books = null)
+        private static IBookRepository GetInMemoryBookRepository(List<Book> books = null)
         {
             if (books is null)
                 books = new();
@@ -150,7 +150,7 @@ namespace Repository.Tests
             return new BookRepository(context.Object);
         }
 
-        private List<Book> GetTestBooks(int numberOfBooks)
+        private static List<Book> GetTestBooks(int numberOfBooks)
         {
             var booksFaker = new Faker<Book>()
                 .RuleFor(b => b.Id, _ => Guid.NewGuid())
@@ -161,7 +161,7 @@ namespace Repository.Tests
             return numberOfBooks > 0 ? booksFaker.Generate(numberOfBooks) : new();
         }
 
-        private Book GetTestBook()
+        private static Book GetTestBook()
         {
             return new Book
             {

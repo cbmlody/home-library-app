@@ -132,7 +132,7 @@ namespace Repository.Tests
             dbSetMock.Verify(x => x.Update(It.Is<Author>(y => y == testAuthor)));
         }
 
-        private IAuthorRepository GetInMemoryAuthorRepository(List<Author> authors = null)
+        private static IAuthorRepository GetInMemoryAuthorRepository(List<Author> authors = null)
         {
             if (authors is null)
                 authors = new();
@@ -151,7 +151,7 @@ namespace Repository.Tests
             return new AuthorRepository(context.Object);
         }
 
-        private List<Author> GetTestAuthors(int numberOfAuthors)
+        private static List<Author> GetTestAuthors(int numberOfAuthors)
         {
             var authorsFaker = new Faker<Author>()
                 .RuleFor(a => a.Id, _ => Guid.NewGuid())
@@ -163,7 +163,7 @@ namespace Repository.Tests
             return numberOfAuthors > 0 ? authorsFaker.Generate(numberOfAuthors) : new();
         }
 
-        private Author GetTestAuthor()
+        private static Author GetTestAuthor()
         {
             return new Author
             {
