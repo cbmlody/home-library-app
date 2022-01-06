@@ -155,7 +155,7 @@ namespace Repository.Tests
             var booksFaker = new Faker<Book>()
                 .RuleFor(b => b.Id, _ => Guid.NewGuid())
                 .RuleFor(b => b.Title, f => f.Hacker.Phrase())
-                .RuleFor(b => b.ISBN, f => f.Commerce.Ean13())
+                .RuleFor(b => b.EAN, f => f.Commerce.Ean13())
                 .RuleFor(b => b.Authors, _ => null);
 
             return numberOfBooks > 0 ? booksFaker.Generate(numberOfBooks) : new();
@@ -167,7 +167,7 @@ namespace Repository.Tests
             {
                 Id = Guid.Parse("7bd2336b-25ca-4e92-b096-16583b801bb0"),
                 Title = "Book Title",
-                ISBN = "123-45-678-9012-3",
+                EAN = "123-45-678-9012-3",
                 Authors = null
             };
         }

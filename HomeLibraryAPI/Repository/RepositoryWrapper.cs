@@ -10,28 +10,17 @@ namespace Repository
         private readonly LibraryContext _libraryContext;
         private IAuthorRepository _author;
         private IBookRepository _book;
+        private IBookSeriesRepository _bookSeries;
+        private IBookshelveRepository _bookshelve;
+        private IGenreRepository _genre;
+        private IPublisherRepository _publisher;
 
-        public IAuthorRepository Author
-        {
-            get
-            {
-                if (_author == null)
-                    _author = new AuthorRepository(_libraryContext);
-
-                return _author;
-            }
-        }
-        public IBookRepository Book
-        {
-            get
-            {
-                if (_book == null)
-                    _book = new BookRepository(_libraryContext);
-
-
-                        return _book;
-            }
-        }
+        public IAuthorRepository Author => _author ?? new AuthorRepository(_libraryContext);
+        public IBookRepository Book => _book ?? new BookRepository(_libraryContext);
+        public IBookSeriesRepository BookSeries => _bookSeries ?? new BookSeriesRepository(_libraryContext);
+        public IBookshelveRepository Bookshelve => _bookshelve ?? new BookshelveRepository(_libraryContext);
+        public IGenreRepository Genre => _genre ?? new GenreRepository(_libraryContext);
+        public IPublisherRepository Publisher => _publisher ?? new PublisherReposiory(_libraryContext);
 
         public RepositoryWrapper(LibraryContext libraryContext)
         {
