@@ -8,12 +8,12 @@ namespace Repository
     public class RepositoryWrapper : IRepositoryWrapper
     {
         private readonly LibraryContext _libraryContext;
-        private IAuthorRepository _author;
-        private IBookRepository _book;
-        private IBookSeriesRepository _bookSeries;
-        private IBookshelveRepository _bookshelve;
-        private IGenreRepository _genre;
-        private IPublisherRepository _publisher;
+        private readonly IAuthorRepository _author;
+        private readonly IBookRepository _book;
+        private readonly IBookSeriesRepository _bookSeries;
+        private readonly IBookshelveRepository _bookshelve;
+        private readonly IGenreRepository _genre;
+        private readonly IPublisherRepository _publisher;
 
         public IAuthorRepository Author => _author ?? new AuthorRepository(_libraryContext);
         public IBookRepository Book => _book ?? new BookRepository(_libraryContext);
