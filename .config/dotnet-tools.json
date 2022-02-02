@@ -3,13 +3,13 @@
   "isRoot": true,
   "tools": {
     "dotnet-sonarscanner": {
-      "version": "5.3.2",
+      "version": "5.4.1",
       "commands": [
         "dotnet-sonarscanner"
       ]
     },
     "dotnet-ef": {
-      "version": "6.0.0",
+      "version": "6.0.1",
       "commands": [
         "dotnet-ef"
       ]
