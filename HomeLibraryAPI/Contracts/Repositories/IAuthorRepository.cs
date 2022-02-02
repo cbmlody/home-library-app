@@ -2,7 +2,7 @@
 
 namespace Contracts.Repositories
 {
-    public interface IAuthorRepository : IRepositoryBase<Author>
+    public interface IAuthorRepository : IRepositoryBase<Author>, IRepositoryBaseAsync<Author>
     {
     }
 }

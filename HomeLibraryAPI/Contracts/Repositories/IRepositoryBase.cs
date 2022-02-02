@@ -4,12 +4,12 @@ using System.Linq.Expressions;
 
 namespace Contracts.Repositories
 {
-    public interface IRepositoryBase<T>
+    public interface IRepositoryBase<TEntity> where TEntity : class
     {
-        IQueryable<T> FindAll();
-        IQueryable<T> FindAllByCondition(Expression<Func<T, bool>> expression);
-        void Create(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        IQueryable<TEntity> FindAll();
+        IQueryable<TEntity> FindByCondition(Expression<Func<TEntity, bool>> expression);
+        void Create(TEntity entity);
+        void Update(TEntity entity);
+        void Delete(TEntity entity);
     }
 }

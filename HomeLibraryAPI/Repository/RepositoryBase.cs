@@ -25,7 +25,7 @@ namespace Repository
                 .AsNoTracking();
         }
 
-        public IQueryable<TEntity> FindAllByCondition(Expression<Func<TEntity, bool>> expression)
+        public IQueryable<TEntity> FindByCondition(Expression<Func<TEntity, bool>> expression)
         {
             return LibraryContext.Set<TEntity>()
                 .Where(expression)

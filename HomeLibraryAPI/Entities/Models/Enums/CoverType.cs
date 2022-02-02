@@ -1,4 +1,5 @@
-﻿namespace Entities.Models.Enums
+﻿
+namespace Entities.Models.Enums
 {
     public enum CoverType
     {

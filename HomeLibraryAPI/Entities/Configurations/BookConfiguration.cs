@@ -17,9 +17,11 @@ namespace Entities.Configurations
             builder.HasMany(b => b.Authors)
                 .WithMany(a => a.Books)
                 .UsingEntity<Dictionary<string, object>>(
-                    "AuthorBooks",
+                    "AuthorsBooks",
                     x => x.HasOne<Author>().WithMany().HasConstraintName("AuthorBooks"),
                     x => x.HasOne<Book>().WithMany().HasConstraintName("BookAuthors"));
+            builder.HasOne(b => b.BookSeries)
+                .WithMany(b => b.Books);
         }
     }
 }

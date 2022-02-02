@@ -2,7 +2,7 @@
 
 namespace Contracts.Repositories
 {
-    public interface IBookSeriesRepository : IRepositoryBase<BookSeries>
+    public interface IBookSeriesRepository : IRepositoryBase<BookSeries>, IRepositoryBaseAsync<BookSeries>
     {
     }
 }
