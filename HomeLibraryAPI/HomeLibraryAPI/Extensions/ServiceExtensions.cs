@@ -7,6 +7,8 @@ using LoggerService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
+using Repository;
+
 namespace HomeLibraryAPI.Extensions
 {
     public static class ServiceExtensions
@@ -39,7 +41,7 @@ namespace HomeLibraryAPI.Extensions
 
         public static void ConfigureRepositoryWrapper(this IServiceCollection services)
         {
-            services.AddScoped<IRepositoryWrapper, IRepositoryWrapper>();
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
         }
     }
 }
