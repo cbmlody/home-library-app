@@ -2,7 +2,7 @@
 
 namespace Contracts.Repositories
 {
-    public interface IBookshelveRepository : IRepositoryBase<Bookshelve>
+    public interface IBookshelveRepository : IRepositoryBase<Bookshelve>, IRepositoryBaseAsync<Bookshelve>
     {
     }
 }
