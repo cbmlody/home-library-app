@@ -25,6 +25,7 @@
     <ProjectReference Include="..\HomeLibraryAPI.EF\HomeLibraryAPI.EF.csproj" />
     <ProjectReference Include="..\HomeLibraryAPI.EF.Design\HomeLibraryAPI.EF.Design.csproj" />
     <ProjectReference Include="..\HomeLibraryAPI.LoggerService\HomeLibraryAPI.LoggerService.csproj" />
+    <ProjectReference Include="..\HomeLibraryAPI.Middleware\HomeLibraryAPI.Middleware.csproj" />
     <ProjectReference Include="..\HomeLibraryAPI.Repositories\HomeLibraryAPI.Repositories.csproj" />
   </ItemGroup>
 
