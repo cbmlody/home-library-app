@@ -31,13 +31,16 @@ namespace HomeLibraryAPI
             services.ConfigureMsSqlContext();
             services.ConfigureRepositoryWrapper();
             services.AddControllers();
+            services.ConfigureSwagger();
+            services.AddAutoMapper(typeof(Startup));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();
