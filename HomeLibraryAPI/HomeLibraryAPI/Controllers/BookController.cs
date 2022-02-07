@@ -29,45 +29,28 @@ namespace HomeLibraryAPI.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAllBooks()
         {
-            try
-            {
-                var books = await _repository.Book.GetAllAsync();
-                _logger.LogInfo(string.Format(Resource.ReturnedAllInfo, "books"));
+            var books = await _repository.Book.GetAllAsync();
+            _logger.LogInfo(string.Format(Resource.ReturnedAllInfo, "books"));
 
-                var booksResult = _mapper.Map<IEnumerable<BookDto>>(books);
-                return Ok(booksResult);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(string.Format(Resource.ReturnedErrorInfo, nameof(GetAllBooks), ex.Message));
-                return StatusCode(500, Resource.ServerError);
-            }
+            var booksResult = _mapper.Map<IEnumerable<BookDto>>(books);
+            return Ok(booksResult);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult> GetBookById(Guid id)
         {
-            try
-            {
-                var book = await _repository.Book.GetByIdAsync(id);
-                if (book == null)
-                {
-                    _logger.LogError(string.Format(Resource.ReturnedSingleErrorInfo, nameof(EF.Models.Book), id));
-                    return NotFound();
-                }
-                else
-                {
-                    _logger.LogInfo(string.Format(Resource.ReturnedSingleInfo, nameof(EF.Models.Book), id));
+            var book = await _repository.Book.GetByIdAsync(id);
 
-                    var bookResult = _mapper.Map<BookDto>(book);
-                    return Ok(bookResult);
-                }
-            }
-            catch (Exception ex)
+            if (book == null)
             {
-                _logger.LogError(string.Format(Resource.ReturnedErrorInfo, nameof(GetBookById), ex.Message));
-                return StatusCode(500, Resource.ServerError);
+                _logger.LogError(string.Format(Resource.ReturnedSingleErrorInfo, nameof(EF.Models.Book), id));
+                return NotFound();
             }
+
+            _logger.LogInfo(string.Format(Resource.ReturnedSingleInfo, nameof(EF.Models.Book), id));
+
+            var bookResult = _mapper.Map<BookDto>(book);
+            return Ok(bookResult);
         }
     }
 }

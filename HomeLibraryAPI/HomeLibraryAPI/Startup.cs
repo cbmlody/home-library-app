@@ -43,6 +43,8 @@ namespace HomeLibraryAPI
                 app.UseSwaggerUI();
             }
 
+            app.ConfigureExceptionHandler();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
