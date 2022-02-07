@@ -74,7 +74,15 @@ namespace HomeLibraryAPI.Tests.Controllers
         [Fact]
         public async Task GetAuthorById_WhenCalled_ReturnsOkResult()
         {
+            // Arrange
+            Guid id = Guid.Empty;
+            _repositoryWrapper.Setup(m => m.Author.GetByIdAsync(id)).ReturnsAsync(new Author());
 
+            // Act
+            var result = await _controller.GetAuthorById(id);
+
+            // Assert
+            result.Should().BeOfType<OkObjectResult>();
         }
 
         [Fact]
