@@ -2,6 +2,7 @@
 
 using HomeLibraryAPI.EF.DTO;
 using HomeLibraryAPI.EF.Models;
+using HomeLibraryAPI.EF.UpdateDTO;
 
 namespace HomeLibraryAPI
 {
@@ -9,9 +10,13 @@ namespace HomeLibraryAPI
     {
         public MappingProfile()
         {
-            CreateMap<Author, AuthorDto>();
-            CreateMap<Book, BookDto>();
-            CreateMap<Publisher, PublisherDto>();
+            CreateMap<Author, AuthorDto>().ReverseMap();
+            CreateMap<Book, BookDto>().ReverseMap();
+            CreateMap<Publisher, PublisherDto>().ReverseMap();
+
+            CreateMap<AuthorCreateUpdateDto, Author>();
+            CreateMap<BookCreateUpdateDto, Book>();
+            CreateMap<PublisherCreateUpdateDto, Publisher>();
         }
     }
 }
