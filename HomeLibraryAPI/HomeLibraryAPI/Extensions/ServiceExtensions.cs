@@ -1,11 +1,15 @@
-﻿using Contracts;
-
-using Entities;
-
-using LoggerService;
+﻿using HomeLibraryAPI.Contracts;
+using HomeLibraryAPI.EF;
+using HomeLibraryAPI.LoggerService;
+using HomeLibraryAPI.Repositories;
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+using System;
+using System.IO;
 
 namespace HomeLibraryAPI.Extensions
 {
@@ -13,7 +17,20 @@ namespace HomeLibraryAPI.Extensions
     {
         public static void ConfigureMsSqlContext(this IServiceCollection services)
         {
-            services.AddDbContext<LibraryContext>();
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), @"..\HomeLibraryAPI"))
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{environment}.json", optional: true)
+                .AddEnvironmentVariables()
+                .Build();
+
+            var connectionString = config.GetConnectionString(nameof(LibraryContext));
+
+            services.AddDbContext<LibraryContext>(builder =>
+                builder.UseSqlServer(connectionString,
+                    x => x.MigrationsAssembly("HomeLibraryAPI.EF.Design")));
         }
 
         public static void ConfigureCors(this IServiceCollection services)
@@ -35,6 +52,16 @@ namespace HomeLibraryAPI.Extensions
         public static void ConfigureLoggerService(this IServiceCollection services)
         {
             services.AddSingleton<ILoggerManager, LoggerManager>();
+        }
+
+        public static void ConfigureRepositoryWrapper(this IServiceCollection services)
+        {
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+        }
+
+        public static void ConfigureSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen();
         }
     }
 }
