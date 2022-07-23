@@ -13,10 +13,14 @@ namespace HomeLibraryAPI
             CreateMap<Author, AuthorDto>().ReverseMap();
             CreateMap<Book, BookDto>().ReverseMap();
             CreateMap<Publisher, PublisherDto>().ReverseMap();
+            CreateMap<BookSeries, BookSeriesDto>()
+                .ForMember(dest => dest.Books, opt => opt.MapFrom(src => src.Books))
+                .ReverseMap();
 
             CreateMap<AuthorCreateUpdateDto, Author>();
             CreateMap<BookCreateUpdateDto, Book>();
             CreateMap<PublisherCreateUpdateDto, Publisher>();
+            CreateMap<BookSeriesCreateUpdateDto, BookSeries>();
         }
     }
 }

@@ -50,7 +50,7 @@ namespace HomeLibraryAPI.Controllers
             }
 
             _logger.LogInfo($"Returned book series with id:{id} from db");
-            var bookSeriesResult = _mapper.Map<IEnumerable<BookSeriesDto>>(bookSerie);
+            var bookSeriesResult = _mapper.Map<BookSeriesDto>(bookSerie);
 
             return Ok(bookSeriesResult);
         }

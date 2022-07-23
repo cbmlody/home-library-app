@@ -31,7 +31,7 @@ namespace HomeLibraryAPI.Middleware
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong: {ex}");
+                _logger.LogError($"An exception occured: {ex}");
                 await HandleExceptionAsync(context, ex);
             }
         }
@@ -44,7 +44,7 @@ namespace HomeLibraryAPI.Middleware
             var message = ex switch
             {
                 AccessViolationException => "Access violation error from the custom middleware.",
-                _ => "Internal Server Error from the custom middleware."
+                _ => "Internal Server Error."
             };
 
             await context.Response.WriteAsync(new ErrorDetails

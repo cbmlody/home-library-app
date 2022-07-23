@@ -64,21 +64,23 @@ namespace HomeLibraryAPI.EF.ModelBuilderExtension
                     CoverType = CoverType.Soft,
                     Volume = 2
                 }
-                );
+            );
 
             builder.Entity<Publisher>().HasData(
                 new Publisher
                 {
                     Id = new Guid("e47b5498-596e-4aa9-aaf5-5778ce5170b8"),
                     Name = "Dummy Publisher"
-                });
+                }
+            );
 
             builder.Entity<BookSeries>().HasData(
                 new BookSeries
                 {
                     Id = new Guid("216de672-375e-4412-9e5e-4fce850a0d7c"),
                     Name = "Dummy Book series"
-                });
+                }
+            );
         }
     }
 }
