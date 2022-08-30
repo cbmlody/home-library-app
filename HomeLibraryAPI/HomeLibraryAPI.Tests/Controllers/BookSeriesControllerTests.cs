@@ -105,5 +105,21 @@ namespace HomeLibraryAPI.Tests.Controllers
             bookSeriesResult.As<BookSeriesDto>().Name.Should().Be(expected.Name);
             _repository.Verify(e => e.BookSeries.GetByIdAsync(id), Times.Once());
         }
+
+        [Fact]
+        public async Task GetBookSeriesById_WhenCalled_ReturnsNotFoundResult()
+        {
+            // Arrange
+            var id = Guid.Empty;
+            BookSeries expected = null;
+            _repository.Setup(rw => rw.BookSeries.GetByIdAsync(id)).ReturnsAsync(expected);
+
+            // Act
+            var result = await _controller.GetBookSeriesById(id);
+
+            // Assert
+            result.Should().BeOfType<NotFoundResult>();
+            _repository.Verify(rw => rw.BookSeries.GetByIdAsync(id), Times.Once);
+        }
     }
 }
