@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="SonarQube - home-library-app Sonar way" ToolsVersion="17.0">
+  <Include Path="..\.sonarlint\cbmlody_home-library-appcsharp.ruleset" Action="Default" />
+  <Include Path="..\.sonarlint\cbmlody_home-library-appcsharp.ruleset" Action="Default" />
+</RuleSet>

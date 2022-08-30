@@ -2,12 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <CodeAnalysisRuleSet>..\.sonarlint\cbmlody_home-library-appcsharp.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>HomeLibraryAPI.Contracts.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="..\.sonarlint\cbmlody_home-library-app\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HomeLibraryAPI.EF\HomeLibraryAPI.EF.csproj" />
