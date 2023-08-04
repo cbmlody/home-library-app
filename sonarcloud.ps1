@@ -12,7 +12,7 @@ if (Test-Path $testOutputDir)
     Remove-Item $testOutputDir -Recurse -Force
 }
 
-.\.sonar\scanner\dotnet-sonarscanner begin /k:"cbmlody_home-library-app" /o:"cbmlody" /d:sonar.login="$sonarSecret" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vstest.reportsPaths=TestResults/*.trx /d:sonar.cs.opencover.reportsPaths=TestResults/*/coverage.opencover.xml
+.\.sonar\scanner\dotnet-sonarscanner begin /k:"cbmlody_home-library-app" /o:"cbmlody" /d:sonar.token="$sonarSecret" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vstest.reportsPaths=TestResults/*.trx /d:sonar.cs.opencover.reportsPaths=TestResults/*/coverage.opencover.xml
 Write-Host "Restoring dependencies..."
 dotnet restore .\HomeLibraryAPI\HomeLibraryAPI.sln
 
@@ -22,4 +22,4 @@ dotnet build .\HomeLibraryAPI\ --configuration Release
 Write-Host "Starting tests..."
 dotnet test .\HomeLibraryAPI\HomeLibraryAPI.sln --collect:"XPlat Code Coverage" -r .\TestResults --logger "trx;LogFileName=unittests.trx" --no-build --no-restore --configuration Release -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
 
-.\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="$sonarSecret"
+.\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="$sonarSecret"
