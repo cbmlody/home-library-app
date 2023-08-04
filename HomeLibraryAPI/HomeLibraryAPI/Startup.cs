@@ -29,15 +29,21 @@ namespace HomeLibraryAPI
             services.ConfigureIISIntegration();
             services.ConfigureLoggerService();
             services.ConfigureMsSqlContext();
+            services.ConfigureRepositoryWrapper();
             services.AddControllers();
+            services.ConfigureSwagger();
+            services.AddAutoMapper(typeof(Startup));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
+
+            app.ConfigureExceptionHandler();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

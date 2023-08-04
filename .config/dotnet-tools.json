@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "dotnet-sonarscanner": {
+      "version": "5.4.1",
+      "commands": [
+        "dotnet-sonarscanner"
+      ]
+    },
+    "dotnet-ef": {
+      "version": "6.0.1",
+      "commands": [
+        "dotnet-ef"
+      ]
+    }
+  }
+}
